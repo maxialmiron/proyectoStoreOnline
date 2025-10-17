@@ -4,8 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(),tailwindcss()],
-  base:'https://maxialmiron.github.io',
-  server: {
-  open: '/proyectoStoreOnline',
-}
+  base:'https://maxialmiron.github.io/proyectoStoreOnline/'
 })
