@@ -4,5 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(),tailwindcss()],
-  base:'/proyectoStoreOnline/'
+  base:'/proyectoStoreOnline/',
+  server: {
+  open: '/login',
+}
 })
