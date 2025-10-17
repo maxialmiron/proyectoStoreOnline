@@ -8,7 +8,7 @@ import Categorias from "../pages/Categorias";
 export default function AppRoutes() {
   return (
       <Routes>
-        <Route path="/" element={<Inicio/>} />
+        <Route path="/proyectoStoreOnline" element={<Inicio/>} />
         <Route path="/productos/:id" element={<ProductoDetalle agregarProducto={undefined}/>} />
         <Route path="/categorias" element={<Categorias/>} />
         <Route path="/about" element={<About/>} />
