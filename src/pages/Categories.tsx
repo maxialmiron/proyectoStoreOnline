@@ -1,36 +1,36 @@
 import { useEffect, useState } from "react";
 
-const Categorias = () => {
-  const CATEGORIAS_URL = 'https://fakestoreapi.com/products/categories/';
-  const [categorias, setCategorias] = useState([]);
-  const [cargando, setCargando] = useState(false);
-  const [error, setError] = useState();
+const Categories = () => {
+  const CATEGORIES_URL = 'https://fakestoreapi.com/products/categories/';
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    setCargando(true);
-    fetch(CATEGORIAS_URL)
+    setLoading(true);
+    fetch(CATEGORIES_URL)
       .then(response => response.json())
       .then(datos => {
-        setCategorias(datos);
+        setCategories(datos);
         console.log("Datos cargados:", datos);
       })
       .catch(error => {
         console.error("Error:", error);
         setError("Error al cargar Categorias");
       })
-      .finally(() => setCargando(false));
+      .finally(() => setLoading(false));
   }, []);
 
-  if (cargando) return <p>Cargando Categorias...</p>;
+  if (loading) return <p>Cargando Categorias...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="">
       <div className="grid grid-cols-4 gap-4">
         <ul>
-          {categorias.map((categoria) => (
+          {categories.map((category) => (
             <li>
-              {categoria}
+              {category}
             </li>
           ))}
         </ul>
@@ -39,4 +39,4 @@ const Categorias = () => {
   );
 }
 
-export default Categorias;
+export default Categories;
