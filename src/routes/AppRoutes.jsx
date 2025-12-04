@@ -3,6 +3,7 @@ import ProductDetail from "../components/ProductDetail";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Login from "../pages/Admin";
 import Categories from "../pages/Categories";
 
 export default function AppRoutes() {
@@ -13,6 +14,8 @@ export default function AppRoutes() {
         <Route path="/categories" element={<Categories/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/admin" element={<Admin/>} />
+
       </Routes>
   );
 }
