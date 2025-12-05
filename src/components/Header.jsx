@@ -9,13 +9,13 @@ import SearchBar from "../components/SearchBar";
 
 const Header = () => {
   const { carrito } = useContext(CarritoContext);
-  const { usuario, logout } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const [menuAbierto, setMenuAbierto] = useState(false);
   
-  const estaLogeado = !!usuario;
+  const estaLogeado = !!user;
   const contadorEnCarrito = carrito.length;
   
-  const esAdmin = usuario?.rol === 'admin';
+  const esAdmin = user?.rol === 'admin';
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -62,11 +62,11 @@ const Header = () => {
                   to="/admin" 
                   className="hidden md:inline text-sm font-medium text-[#333] hover:underline transition-all duration-200 cursor-pointer"
                 >
-                  Hola, {usuario.nombre}
+                  Hola, {user.name}
                 </Link>
               ) : (
                 <span className="hidden md:inline text-sm font-medium text-[#333]">
-                  Hola, {usuario.nombre}
+                  Hola, {user.name}
                 </span>
               )}
               
@@ -135,11 +135,11 @@ const Header = () => {
                     onClick={cerrarMenu}
                     className="text-white text-xl font-medium text-center mb-2 hover:underline transition-all duration-200"
                   >
-                    Hola, {usuario.nombre}
+                    Hola, {user.name}
                   </Link>
                 ) : (
                   <span className="text-white text-xl font-medium text-center mb-2">
-                    Hola, {usuario.nombre}
+                    Hola, {user.name}
                   </span>
                 )}
                 

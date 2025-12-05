@@ -3,35 +3,35 @@ import { useState, useContext, createContext} from 'react';
 const FAKE_USERS = [
   { 
     id: 1, 
-    usuario: 'admin', 
-    contrasenia: '1234', 
+    user: 'admin', 
+    password: '1234', 
     rol: 'admin',
-    nombre: 'Admin'
+    name: 'Admin'
   },
   { 
     id: 2, 
-    usuario: 'jose', 
-    contrasenia: '1234', 
+    user: 'jose', 
+    password: '1234', 
     rol: 'usuario',
-    nombre: 'jose'
+    name: 'jose'
   }
 ];
 
 const AuthContext = createContext('');
 
 export const AuthProvider = ({ children }) => {  
-    const [usuario, setUsuario] = useState(null);
+    const [user, setUser] = useState(null);
   
-    const login = (nombreUsuario, contrasenia) => {
+    const login = (userName, password) => {
     
-    const usuarioLogin = FAKE_USERS.find(
-      u => u.usuario === nombreUsuario && u.contrasenia === contrasenia
+    const userLogin = FAKE_USERS.find(
+      u => u.user === userName && u.password === password
     );
 
-    if (usuarioLogin) {
-      const token = `fake-token-${nombreUsuario}`;
+    if (userLogin) {
+      const token = `fake-token-${userName}`;
       localStorage.setItem('authToken', token);
-      setUsuario(usuarioLogin);
+      setUser(userLogin);
       return true;
     }
     return false;
@@ -39,11 +39,11 @@ export const AuthProvider = ({ children }) => {
                                        
   const logout = () => {
     localStorage.removeItem('authToken');
-    setUsuario(null);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{usuario, login, logout}}>
+    <AuthContext.Provider value={{ user, login, logout}}>
       {children}
     </AuthContext.Provider>
   ); 

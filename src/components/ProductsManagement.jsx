@@ -67,18 +67,18 @@ const ProductsManagement = () => {
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <div className="flex-shrink-0 w-full sm:w-32">
                   <img 
-                    src={producto.imagen} 
-                    alt={producto.nombre}
+                    src={producto.image} 
+                    alt={producto.title}
                     className="w-full sm:w-32 sm:h-32 object-cover rounded-md"
                   />
                 </div>
                 <div className="grow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
                   <div className=" flex grow">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      {producto.nombre}
+                      {producto.title}
                     </h3>
                     <p className="text-2xl font-bold text-gray-900">
-                      ${producto.precio?.toLocaleString('es-AR')}
+                      ${producto.price?.toLocaleString('es-AR')}
                     </p>
                   </div>
 
@@ -122,7 +122,7 @@ const ProductsManagement = () => {
             
             <div className="mb-6">
               <p className="text-gray-700">
-                ¿Estás seguro que querés eliminar <span className="font-semibold">"{productoAEliminar.nombre}"</span>?
+                ¿Estás seguro que querés eliminar <span className="font-semibold">"{productoAEliminar.title}"</span>?
               </p>
             </div>
 
@@ -149,7 +149,7 @@ const ProductsManagement = () => {
         <FormProduct
           productoInicial={productoSeleccionado || {}}
           modo={modoFormulario}
-          onCerrar={cerrarFormulario}
+          onClose={cerrarFormulario}
         />
       )}
     </div>

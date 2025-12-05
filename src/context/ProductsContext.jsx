@@ -86,9 +86,7 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const eliminarProducto = async (id) => {
-    const confirmar = window.confirm("¿Estás seguro de eliminar?");
 
-    if (confirmar) {
       try {
         setError(null);
 
@@ -108,7 +106,6 @@ export const ProductsProvider = ({ children }) => {
       const mensajeError = "Hubo un problema al eliminar el producto.";
       setError(mensajeError);
       }
-    }
   };
 
   return (

@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const [usuario, setUsuario] = useState("");
-  const [contrasenia, setContrasenia] = useState("");
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
 
   const { login } = useAuthContext();
   const navigate = useNavigate();
 
-  const manejarSubmit = (evento) => {
+  const handleSubmit = (evento) => {
     evento.preventDefault();
 
-    if (login(usuario, contrasenia)) {
+    if (login(user, password)) {
       navigate("/proyectoStoreOnline");
     } else {
       alert("Usuario o Contraseña invalido");
@@ -29,7 +29,7 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={manejarSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="usuario"
@@ -42,8 +42,8 @@ const Login = () => {
                   id="usuario"
                   name="usuario"
                   type="text"
-                  value={usuario}
-                  onChange={(evento) => setUsuario(evento.target.value)}
+                  value={user}
+                  onChange={(evento) => setUser(evento.target.value)}
                   className="block w-full border rounded-md px-3 py-1.5 text-base text-gray-800 outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-600 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-400 sm:text-sm/6"
                 />
               </div>
@@ -72,8 +72,8 @@ const Login = () => {
                   name="password"
                   type="password"
                   required
-                  value={contrasenia}
-                  onChange={(evento) => setContrasenia(evento.target.value)}
+                  value={password}
+                  onChange={(evento) => setPassword(evento.target.value)}
                   className="block w-full border rounded-md px-3 py-1.5 text-base text-gray-800 outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-600 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-400 sm:text-sm/6"
                 />
               </div>
