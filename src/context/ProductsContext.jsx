@@ -9,7 +9,6 @@ export const ProductsProvider = ({ children }) => {
   
   const API = "https://6931e23a11a8738467d0dfd8.mockapi.io/api/v1/products";
   
-  // Cargar productos al montar el componente
   useEffect(() => {
     cargarProductos();
   }, []);
@@ -36,7 +35,6 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-  // Funcion para agregar el producto a la API
   const agregarProducto = async (producto) => {
     try {
       setError(null);
@@ -87,7 +85,6 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-   // Funcion para eliminar producto de la API
   const eliminarProducto = async (id) => {
     const confirmar = window.confirm("¿Estás seguro de eliminar?");
 

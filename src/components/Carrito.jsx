@@ -11,7 +11,6 @@ const Carrito = () => {
   }, 0);
 
   const envio = 0;
-  // Total
   const total = subtotal + envio;
 
   const manejarCantidad = (indice, operacion) => {
@@ -23,7 +22,6 @@ const Carrito = () => {
       decrementar: -1,
     };
 
-    // Calculamos la nueva cantidad
     const nuevaCantidad = cantidadActual + cambios[operacion];
 
     // Si la cantidad llega a 0 o menos, eliminamos el producto
@@ -76,7 +74,6 @@ const Carrito = () => {
                     />
                   </div>
                   
-                  {/* Informacion del Producto */}
                   <div className="flex grow flex-col justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -110,7 +107,6 @@ const Carrito = () => {
                         </div>
                       </div>
                       
-                      {/* Precio */}
                       <div className="flex items-center justify-between sm:justify-end gap-4">
                         <div className="text-right">
                           <p className="text-lg font-bold text-gray-900">
@@ -123,7 +119,6 @@ const Carrito = () => {
                           )}
                         </div>
                         
-                        {/* Boton de Eliminar */}
                         <button 
                           onClick={() => eliminarDelCarrito(indice)}
                           className="p-2 hover:text-red-600 rounded-md transition-colors duration-150"

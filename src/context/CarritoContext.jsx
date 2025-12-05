@@ -25,8 +25,7 @@ export const CarritoProvider = ({ children }) => {
     nuevoCarrito[indice] = { ...nuevoCarrito[indice], cantidad: nuevaCantidad };
     setCarrito(nuevoCarrito);
   };
-  // Usamos filter() para crear un nuevo array que excluye el elemento
-  // con el índice dado.
+  
   const eliminarDelCarrito = (indiceAEliminar) => {
     setCarrito(carrito.filter((_, indice) => indice !== indiceAEliminar));
   };

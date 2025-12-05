@@ -1,6 +1,6 @@
 import { useState, useContext, createContext} from 'react';
 
-const USUARIOS_FAKE = [
+const FAKE_USERS = [
   { 
     id: 1, 
     usuario: 'admin', 
@@ -17,7 +17,6 @@ const USUARIOS_FAKE = [
   }
 ];
 
-// creamos el contexto de Autenticacion 
 const AuthContext = createContext('');
 
 export const AuthProvider = ({ children }) => {  
@@ -25,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   
     const login = (nombreUsuario, contrasenia) => {
     
-    const usuarioLogin = USUARIOS_FAKE.find(
+    const usuarioLogin = FAKE_USERS.find(
       u => u.usuario === nombreUsuario && u.contrasenia === contrasenia
     );
 

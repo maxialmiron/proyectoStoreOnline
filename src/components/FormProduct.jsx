@@ -3,24 +3,24 @@ import { useProductsContext } from "../context/ProductsContext";
 import styles from "./FormProduct.module.css";
 // import X from "../assets/X";
 
-const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
+const FormProduct = ({ initialProduct = {}, modo = "agregar", onClose }) => {
   
-  const [producto, setProducto] = useState(productoInicial);
-  const { agregarProducto, editarProducto } = useProductsContext();
+  const [product, setProduct] = useState(initialProduct);
+  const { addProduct, editProduct } = useProductsContext();
 
-  const manejarChange = (evento) => {
+  const handleChange = (evento) => {
     const { name, value } = evento.target;
-    setProducto({ ...producto, [name]: value });
+    setProduct({ ...product, [name]: value });
   };
 
-  const manejarSubmit = async (evento) => {
+  const handleSubmit = async (evento) => {
     evento.preventDefault();
     if (modo === "agregar") {
-      await agregarProducto(producto);
+      await addProduct(product);
     } else {
-      await editarProducto(producto);
+      await editProduct(product);
     }
-    onCerrar();
+    onClose();
   };
 
   return (
@@ -39,14 +39,14 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
             </h3>
             <button 
               type="button" 
-              onClick={onCerrar}
+              onClick={onClose}
               className={styles.closeButton}
             >
               {/* <X /> */}
             </button>
           </div>
           {/* Cuerpo del Modal */}
-          <form onSubmit={manejarSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className={styles.formGrid}>
               {/* Campo Nombre */}
               <div className={styles.colSpan2}>
@@ -59,8 +59,8 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
                   id="nombre"
                   className={styles.formInputBase}
                   placeholder="Ingrese el nombre del producto"
-                  value={producto.nombre || ""}
-                  onChange={manejarChange}
+                  value={product.nombre || ""}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -75,8 +75,8 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
                   id="precio"
                   className={styles.formInputBase}
                   placeholder="$0.00"
-                  value={producto.precio || ""}
-                  onChange={manejarChange}
+                  value={product.precio || ""}
+                  onChange={handleChange}
                   required
                   min="0"
                   step="any"
@@ -94,8 +94,8 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
                   id="imagen"
                   className={styles.formInputBase}
                   placeholder="https://ejemplo.com/imagen.jpg"
-                  value={producto.imagen || ""}
-                  onChange={manejarChange}
+                  value={product.imagen || ""}
+                  onChange={handleChange}
                 />
               </div>
               {/* Campo Descripcion */}
@@ -109,8 +109,8 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
                   rows="4"
                   className={styles.formInputBase}
                   placeholder="Escriba la descripción del producto aquí"
-                  value={producto.descripcion || ""}
-                  onChange={manejarChange}
+                  value={product.descripcion || ""}
+                  onChange={handleChange}
                   required
                 ></textarea>
               </div>
@@ -127,7 +127,7 @@ const FormProduct = ({ productoInicial = {}, modo = "agregar", onCerrar }) => {
               {/* Boton Secundario o de cancelar */}
               <button 
                 type="button" 
-                onClick={onCerrar}
+                onClick={onClose}
                 className={`${styles.btnBase} ${styles.btnSecondary}`}
               >
                 Cancelar

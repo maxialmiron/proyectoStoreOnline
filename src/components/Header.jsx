@@ -15,7 +15,6 @@ const Header = () => {
   const estaLogeado = !!usuario;
   const contadorEnCarrito = carrito.length;
   
-  // Verificamos si el usuario es admin
   const esAdmin = usuario?.rol === 'admin';
 
   const toggleMenu = () => {
@@ -55,7 +54,6 @@ const Header = () => {
         <div className="flex items-center gap-3 md:gap-4">
           {/* Barra de Busqueda */}
           <SearchBar />
-          {/* Verifica si alguien esta logeado */}
           {estaLogeado ? (
             <>
               {/* Si es admin, hacer el nombre clickeable, si no, solo texto */}

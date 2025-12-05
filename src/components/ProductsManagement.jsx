@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormProduct from "./FormProduct";
 import { useProductsContext } from "../context/ProductsContext";
+import FormProduct from "./FormProduct";
 // import CirclePlus from "../assets/CirclePlus";
 // import SquarePen from "../assets/SquarePen";
 // import TrashIcon from "../assets/TrashIcon";
@@ -12,27 +12,23 @@ const ProductsManagement = () => {
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [productoAEliminar, setProductoAEliminar] = useState(null);
 
-  // Abrir formulario para AGREGAR
   const abrirFormularioAgregar = () => {
     setModoFormulario("agregar");
     setProductoSeleccionado(null);
     setMostrarForm(true);
   };
 
-  // Abrir formulario para EDITAR
   const abrirFormularioEditar = (producto) => {
     setModoFormulario("editar");
     setProductoSeleccionado(producto);
     setMostrarForm(true);
   };
 
-  // Cerrar formulario
   const cerrarFormulario = () => {
     setMostrarForm(false);
     setProductoSeleccionado(null);
   };
 
-  // Confirmar eliminación
   const confirmarEliminacion = (producto) => {
     setProductoAEliminar(producto);
   };
@@ -46,7 +42,6 @@ const ProductsManagement = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h2 className="text-3xl font-bold text-gray-900">Lista de Productos</h2>
         <button
@@ -58,7 +53,6 @@ const ProductsManagement = () => {
         </button>
       </div>
 
-      {/* Lista de productos */}
       {productos.length === 0 ? (
         <div className="bg-white border border-gray-200 rounded-lg p-12 text-center">
           <p className="text-gray-600 text-lg">No hay productos</p>
@@ -71,7 +65,6 @@ const ProductsManagement = () => {
               className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow duration-200"
             >
               <div className="flex flex-col sm:flex-row gap-4 items-start">
-                {/* Imagen del producto */}
                 <div className="flex-shrink-0 w-full sm:w-32">
                   <img 
                     src={producto.imagen} 
@@ -79,8 +72,6 @@ const ProductsManagement = () => {
                     className="w-full sm:w-32 sm:h-32 object-cover rounded-md"
                   />
                 </div>
-
-                {/* Información del producto */}
                 <div className="grow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
                   <div className=" flex grow">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -91,7 +82,6 @@ const ProductsManagement = () => {
                     </p>
                   </div>
 
-                  {/* Botones de editar y eliminar */}
                   <div className="flex gap-3 sm:shrink-0">
                     <button
                       onClick={() => abrirFormularioEditar(producto)}
@@ -115,7 +105,6 @@ const ProductsManagement = () => {
         </div>
       )}
 
-      {/* Modal de confirmacion de eliminar */}
       {productoAEliminar && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
