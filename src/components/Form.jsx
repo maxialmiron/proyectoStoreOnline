@@ -2,19 +2,19 @@ import { useState } from 'react';
 
 const Form = () => {
   
-  const [nombre, setNombre] = useState('');
+  const [name, setName] = useState('');
 
-  const manejarEnvio = (evento) => {
+  const handleSubmit = (evento) => {
     evento.preventDefault()
-    alert(`Form de: ${nombre} enviado`)
+    alert(`Form de: ${name} enviado`)
   }
 
   return(
-    <form onSubmit={manejarEnvio}>
+    <form onSubmit={handleSubmit}>
       <input 
         type="text"
-        value={nombre}
-        onChange={evento => setNombre(evento.target.value)} 
+        value={name}
+        onChange={evento => setName(evento.target.value)} 
         />
       <button>Enviar</button>
     </form>

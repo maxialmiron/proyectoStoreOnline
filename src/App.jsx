@@ -15,16 +15,16 @@ function App() {
     <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
       <Header />
       <Routes>
-        <Route path="/proyectoStoreOnline" element={<Home />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/busqueda" element={<SearchResults />} />
-        <Route path="/productos/:id" element={<ProductDetail />} />
+        <Route path="/proyectoStoreOnline" element={<Home/>} />
+        <Route path="/categories" element={<Categories/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/busqueda" element={<SearchResults/>} />
+        <Route path="/productos/:id" element={<ProductDetail/>} />
         <Route
           path="/carrito"
           element={
             <ProtectedRoute>
-              <Carrito />
+              <Carrito/>
             </ProtectedRoute>
           }
         />
@@ -32,7 +32,7 @@ function App() {
           path="/admin"
           element={
             <ProtectedRoute>
-              <Admin />
+              <Admin/>
             </ProtectedRoute>
           }
         />

@@ -6,7 +6,6 @@ import { AuthProvider } from "./context/AuthContext.jsx"
 import { CarritoProvider } from "./context/CarritoContext"
 import { ProductsProvider } from "./context/ProductsContext.jsx"
 import { SearchProvider } from "./context/SearchContext"
-import './index.css'
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
