@@ -3,12 +3,11 @@ import { useProductsContext } from "../context/ProductsContext";
 import { Link } from "react-router-dom";
 
 const Busqueda = () => {
-  // usamos los contextos de busqueda y productos.
   const { busqueda } = useSearch();
-  const { productos } = useProductsContext();
+  const { products } = useProductsContext();
 
-  const productosFiltrados = productos.filter((producto) =>
-    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  const productosFiltrados = products.filter((product) =>
+    product.nombre.toLowerCase().includes(busqueda.toLowerCase())
   );
 
   return (
@@ -19,27 +18,27 @@ const Busqueda = () => {
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {productosFiltrados.length > 0 ? (
             <>
-              {productosFiltrados.map((producto) => (
-                <div key={producto.id} className="group relative">
+              {productosFiltrados.map((product) => (
+                <div key={product.id} className="group relative">
                   <img
-                    alt={producto.nombre}
-                    src={producto.imagen}
+                    alt={product.nombre}
+                    src={product.imagen}
                     className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
                   />
                   <div className="mt-4 flex justify-between">
                     <div>
                       <h3 className="text-sm text-gray-700">
-                        <Link to={`/productos/${producto.id}`}>
+                        <Link to={`/productos/${product.id}`}>
                           <span
                             aria-hidden="true"
                             className="absolute inset-0"
                           />
-                          {producto.nombre}
+                          {product.nombre}
                         </Link>
                       </h3>
                     </div>
                     <p className="text-sm font-medium text-gray-900">
-                      ${producto.precio}
+                      ${product.precio}
                     </p>
                   </div>
                 </div>

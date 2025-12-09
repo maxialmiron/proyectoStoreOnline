@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useProductsContext } from "../context/ProductsContext";
 import styles from "./FormProduct.module.css";
-// import X from "../assets/X";
+import X from "../assets/X";
 
 const FormProduct = ({ initialProduct = {}, modo = "agregar", onClose }) => {
 
@@ -42,7 +42,7 @@ const FormProduct = ({ initialProduct = {}, modo = "agregar", onClose }) => {
                             onClick={onClose}
                             className={styles.closeButton}
                         >
-                            {/* <X /> */}
+                            <X />
                         </button>
                     </div>
                     {/* Cuerpo del Modal */}

@@ -3,19 +3,19 @@ import { useState, useEffect, createContext, useContext } from 'react';
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
-  const [productos, setProductos] = useState([]);
-  const [cargando, setCargando] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   const API = "https://6931e23a11a8738467d0dfd8.mockapi.io/api/v1/products";
   
   useEffect(() => {
-    cargarProductos();
+    loadProducts();
   }, []);
 
-  const cargarProductos = async () => {
+  const loadProducts = async () => {
     try {
-      setCargando(true);
+      setLoading(true);
       setError(null);
       
       const respuesta = await fetch(API);
@@ -24,99 +24,99 @@ export const ProductsProvider = ({ children }) => {
         throw new Error(`Error HTTP: ${respuesta.status}`);
       
       const datos = await respuesta.json();
-      setProductos(datos);
+      setProducts(datos);
 
     } catch (error) {
       console.error("Error al cargar productos:", error);
       setError(error.message || "Error al cargar los productos");
 
     } finally {
-      setCargando(false);
+      setLoading(false);
     }
   };
 
-  const agregarProducto = async (producto) => {
+  const addProduct = async (product) => {
     try {
       setError(null);
 
-      const respuesta = await fetch(API, {
+      const response = await fetch(API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(producto),
+        body: JSON.stringify(product),
       });
-      const nuevoProducto = await respuesta.json();
-      console.log("Producto agregado: ", nuevoProducto);
+      const newProduct = await response.json();
+      console.log("Producto agregado: ", newProduct);
       
-      if (!respuesta.ok) 
-        throw new Error(`Error HTTP: ${respuesta.status}`);
+      if (!response.ok) 
+        throw new Error(`Error HTTP: ${response.status}`);
 
       //Agregar el nuevo producto a la lista
-      setProductos([...productos, nuevoProducto]);
+      setProducts([...products, newProduct]);
 
     } catch (error) {
       console.error("Error al agregar:", error);
-      const mensajeError = "Hubo un problema al agregar el producto.";
-      setError(mensajeError);
+      const errorMSg = "Hubo un problema al agregar el producto.";
+      setError(errorMSg);
     }
   };
 
-  const editarProducto = async (producto) => {
+  const editProduct = async (product) => {
     try {
       setError(null);
 
-      const respuesta = await fetch(`${API}/${producto.id}`, {
+      const response = await fetch(`${API}/${product.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(producto),
+        body: JSON.stringify(product),
       });
 
-      if (!respuesta.ok) 
-        throw new Error(`Error HTTP: ${respuesta.status}`);
+      if (!response.ok) 
+        throw new Error(`Error HTTP: ${response.status}`);
 
-      const productoActualizado = await respuesta.json();
-      setProductos(productos.map(p => 
+      const productoActualizado = await response.json();
+      setProducts(products.map(p => 
         p.id === productoActualizado.id ? productoActualizado : p
       ));
 
     } catch (error) {
       console.error("Error al editar:", error);
-      const mensajeError = "Hubo un problema al editar el producto.";
-      setError(mensajeError);
+      const errorMsg = "Hubo un problema al editar el producto.";
+      setError(errorMsg);
     }
   };
 
-  const eliminarProducto = async (id) => {
+  const deleteProduct = async (id) => {
 
       try {
         setError(null);
 
-        const respuesta = await fetch(`${API}/${id}`, {
+        const response = await fetch(`${API}/${id}`, {
             method: "DELETE",
           }
         );
 
-        if (!respuesta.ok) 
+        if (!response.ok) 
           throw new Error("Error al eliminar");  
 
         // Filtra y crea un nuevo array sin el producto eliminado
-        setProductos(productos.filter(p => p.id !== id));
+        setProducts(products.filter(p => p.id !== id));
       } 
       catch (error) {
       console.error(error.message);
-      const mensajeError = "Hubo un problema al eliminar el producto.";
-      setError(mensajeError);
+      const errorMsg = "Hubo un problema al eliminar el producto.";
+      setError(errorMsg);
       }
   };
 
   return (
     <ProductsContext.Provider value={{ 
-      productos,
-      cargando,
+      products,
+      loading,
       error, 
-      cargarProductos, 
-      agregarProducto, 
-      editarProducto, 
-      eliminarProducto 
+      loadProducts, 
+      addProduct, 
+      editProduct, 
+      deleteProduct 
     }}>
       {children}
     </ProductsContext.Provider>

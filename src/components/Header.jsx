@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Navbar from './Navbar';
-// import BagIcon from '../assets/BagIcon';
-// import X from '../assets/X';
+import BagIcon from '../assets/BagIcon';
+import X from '../assets/X';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { CarritoContext } from '../context/CarritoContext';
@@ -88,7 +88,7 @@ const Header = () => {
           {/* Icono del carrito */}
           <div className="relative">
             <Link to="/carrito">
-              {/* <BagIcon className="w-6 h-6" /> */}
+              <BagIcon className="w-6 h-6" />
               {contadorEnCarrito > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {contadorEnCarrito}
@@ -110,7 +110,7 @@ const Header = () => {
           onClick={cerrarMenu}
           aria-label="Cerrar menú"
         >
-          {/* <X /> */}
+          <X />
         </button>
         
         <div className="px-8 py-16 flex flex-col gap-12 min-h-screen">

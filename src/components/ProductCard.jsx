@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { CarritoContext } from "../context/CarritoContext";
 const ProductCard = ({ product, addProduct: addProduct }) => {
+
+  const navigate = useNavigate();
+  const { agregarAlCarrito } = useContext(CarritoContext);
+  const [cantidad, setCantidad] = useState(1);
+  const [agregado, setAgregado] = useState(false);
+
+  const handleAgregarAlCarrito = (product) => {
+    for (let i = 0; i < cantidad; i++) {
+      agregarAlCarrito(product);
+    }
+    setAgregado(true);
+    setTimeout(() => setAgregado(false), 2000);
+  };
+
   return (
     <div className="max-w-sm rounded-2xl shadow-lg overflow-hidden bg-white hover:scale-[1.02] transition-transform">
       <Link to={`/productos/${product.id}`}>
@@ -33,7 +49,7 @@ const ProductCard = ({ product, addProduct: addProduct }) => {
         </div>
 
         <button
-          onClick={() => addProduct(product)}
+          onClick={() => handleAgregarAlCarrito(product)}
           className="mt-5 w-full bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition-colors"
         >
           Añadir al carrito

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-// import TrashIcon from "../assets/TrashIcon";
+import TrashIcon from "../assets/TrashIcon";
 import { CarritoContext } from "../context/CarritoContext";
 
 const Carrito = () => {
@@ -7,7 +7,7 @@ const Carrito = () => {
   
   const subtotal = carrito.reduce((acc, producto) => {
     const cantidad = producto.cantidad || 1;
-    return acc + producto.precio * cantidad;
+    return acc + producto.price * cantidad;
   }, 0);
 
   const envio = 0;
@@ -57,7 +57,7 @@ const Carrito = () => {
         <div className="lg:col-span-2 space-y-4">
           {carrito.map((producto, indice) => {
             const cantidad = producto.cantidad || 1;
-            const precioTotal = producto.precio * cantidad;
+            const precioTotal = producto.price * cantidad;
             
             return (
               <div 
@@ -68,8 +68,8 @@ const Carrito = () => {
                   {/* Imagen del Producto */}
                   <div className="flex shrink-0">
                     <img 
-                      src={producto.imagen} 
-                      alt={producto.nombre}
+                      src={producto.image}
+                      alt={producto.title}
                       className="w-full sm:w-32 sm:h-32 object-cover rounded-md"
                     />
                   </div>
@@ -77,10 +77,10 @@ const Carrito = () => {
                   <div className="flex grow flex-col justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                        {producto.nombre}
+                        {producto.title}
                       </h3>
                       <p className="text-sm text-gray-600 mb-3">
-                        {producto.descripcion || "Producto de alta calidad"}
+                        {producto.description || "Producto de alta calidad"}
                       </p>
                     </div>
                     
@@ -114,7 +114,7 @@ const Carrito = () => {
                           </p>
                           {cantidad > 1 && (
                             <p className="text-xs text-gray-500">
-                              ${producto.precio.toLocaleString('es-AR')} c/u
+                              ${producto.price.toLocaleString('es-AR')} c/u
                             </p>
                           )}
                         </div>
@@ -124,7 +124,7 @@ const Carrito = () => {
                           className="p-2 hover:text-red-600 rounded-md transition-colors duration-150"
                           aria-label="Eliminar producto"
                         >
-                          {/* <TrashIcon /> */}
+                          <TrashIcon />
                         </button>
                       </div>
                     </div>

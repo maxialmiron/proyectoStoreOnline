@@ -1,42 +1,42 @@
 import { useState } from "react";
 import { useProductsContext } from "../context/ProductsContext";
 import FormProduct from "./FormProduct";
-// import CirclePlus from "../assets/CirclePlus";
-// import SquarePen from "../assets/SquarePen";
-// import TrashIcon from "../assets/TrashIcon";
+import CirclePlus from "../assets/CirclePlus";
+import SquarePen from "../assets/SquarePen";
+import TrashIcon from "../assets/TrashIcon";
 
 const ProductsManagement = () => {
-  const { productos, eliminarProducto } = useProductsContext();
-  const [mostrarForm, setMostrarForm] = useState(false);
-  const [modoFormulario, setModoFormulario] = useState("agregar");
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [productoAEliminar, setProductoAEliminar] = useState(null);
+  const { products, deleteProduct } = useProductsContext();
+  const [showForm, setShowForm] = useState(false);
+  const [modeForm, setModeForm] = useState("agregar");
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [productToDelete, setProductToDelete] = useState(null);
 
-  const abrirFormularioAgregar = () => {
-    setModoFormulario("agregar");
-    setProductoSeleccionado(null);
-    setMostrarForm(true);
+  const openAddForm = () => {
+    setModeForm("agregar");
+    setSelectedProduct(null);
+    setShowForm(true);
   };
 
-  const abrirFormularioEditar = (producto) => {
-    setModoFormulario("editar");
-    setProductoSeleccionado(producto);
-    setMostrarForm(true);
+  const openEditForm = (producto) => {
+    setModeForm("editar");
+    setSelectedProduct(producto);
+    setShowForm(true);
   };
 
-  const cerrarFormulario = () => {
-    setMostrarForm(false);
-    setProductoSeleccionado(null);
+  const closeForm = () => {
+    setShowForm(false);
+    setSelectedProduct(null);
   };
 
-  const confirmarEliminacion = (producto) => {
-    setProductoAEliminar(producto);
+  const confirmDelete = (producto) => {
+    setProductToDelete(producto);
   };
 
-  const handleEliminar = () => {
-    if (productoAEliminar) {
-      eliminarProducto(productoAEliminar.id);
-      setProductoAEliminar(null);
+  const handleDelete = () => {
+    if (productToDelete) {
+      deleteProduct(productToDelete.id);
+      setProductToDelete(null);
     }
   };
 
@@ -45,21 +45,21 @@ const ProductsManagement = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h2 className="text-3xl font-bold text-gray-900">Lista de Productos</h2>
         <button
-          onClick={abrirFormularioAgregar}
+          onClick={openAddForm}
           className="flex items-center justify-center gap-2 px-6 py-3 rounded-md font-semibold transition-colors duration-200"
         >
-          {/* <CirclePlus className="w-5 h-5" /> */}
+          <CirclePlus className="w-5 h-5" />
           <span>Agregar Producto</span>
         </button>
       </div>
 
-      {productos.length === 0 ? (
+      {products.length === 0 ? (
         <div className="bg-white border border-gray-200 rounded-lg p-12 text-center">
           <p className="text-gray-600 text-lg">No hay productos</p>
         </div>
       ) : (
         <div className="space-y-4">
-          {productos.map((producto) => (
+          {products.map((producto) => (
             <div
               key={producto.id}
               className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow duration-200"
@@ -84,17 +84,17 @@ const ProductsManagement = () => {
 
                   <div className="flex gap-3 sm:shrink-0">
                     <button
-                      onClick={() => abrirFormularioEditar(producto)}
+                      onClick={() => openEditForm(producto)}
                       className="flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-md font-medium hover:bg-gray-800 transition-colors duration-200"
                     >
-                      {/* <SquarePen className="w-4 h-4" /> */}
+                      <SquarePen className="w-4 h-4" />
                       <span className="text-sm">Editar</span>
                     </button>
                     <button
-                      onClick={() => confirmarEliminacion(producto)}
+                      onClick={() => confirmDelete(producto)}
                       className="flex items-center justify-center bg-red-50 text-red-600 px-3 py-2 rounded-md hover:bg-red-100 transition-colors duration-200"
                     >
-                      {/* <TrashIcon className="w-5 h-5" /> */}
+                      <TrashIcon className="w-5 h-5" />
                       <span className="text-sm">Eliminar</span>
                     </button>
                   </div>
@@ -105,7 +105,7 @@ const ProductsManagement = () => {
         </div>
       )}
 
-      {productoAEliminar && (
+      {productToDelete && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl">
             <div className="flex items-center gap-4 mb-4">
@@ -122,19 +122,19 @@ const ProductsManagement = () => {
             
             <div className="mb-6">
               <p className="text-gray-700">
-                ¿Estás seguro que querés eliminar <span className="font-semibold">"{productoAEliminar.title}"</span>?
+                ¿Estás seguro que querés eliminar <span className="font-semibold">"{productToDelete.title}"</span>?
               </p>
             </div>
 
             <div className="flex gap-3">
               <button
-                onClick={() => setProductoAEliminar(null)}
+                onClick={() => setProductToDelete(null)}
                 className="flex-1 px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-md font-semibold hover:bg-gray-50 transition-colors duration-200"
               >
                 Cancelar
               </button>
               <button
-                onClick={handleEliminar}
+                onClick={handleDelete}
                 className="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 transition-colors duration-200"
               >
                 Eliminar
@@ -145,11 +145,11 @@ const ProductsManagement = () => {
       )}
 
       {/* Modal - Formulario */}
-      {mostrarForm && (
+      {showForm && (
         <FormProduct
-          productoInicial={productoSeleccionado || {}}
-          modo={modoFormulario}
-          onClose={cerrarFormulario}
+          productoInicial={selectedProduct || {}}
+          modo={modeForm}
+          onClose={closeForm}
         />
       )}
     </div>

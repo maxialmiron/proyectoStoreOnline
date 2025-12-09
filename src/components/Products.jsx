@@ -3,19 +3,19 @@ import { useProductsContext } from "../context/ProductsContext";
 import ProductCard from "./ProductCard";
 
 const Products = () => {
-  const { productos, cargando, error } = useProductsContext();
+  const { products, loading, error } = useProductsContext();
 
   const productosPorPagina = 8;
   const [paginaActual, setPaginaActual] = useState(1);
 
-  if (cargando) return "Cargando productos...";
+  if (loading) return "Cargando productos...";
   if (error) return error;
 
   const indiceUltimoProducto = paginaActual * productosPorPagina;
   const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
-  const productosActuales = productos.slice(indicePrimerProducto, indiceUltimoProducto);
+  const productosActuales = products.slice(indicePrimerProducto, indiceUltimoProducto);
 
-  const totalPaginas = Math.ceil(productos.length / productosPorPagina);
+  const totalPaginas = Math.ceil(products.length / productosPorPagina);
   const cambiarPagina = (numeroPagina) => setPaginaActual(numeroPagina);
 
   return (

@@ -2,12 +2,12 @@ import { useSearch } from "../context/SearchContext";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const { busqueda, setBusqueda } = useSearch();
+  const { search, setSearch } = useSearch();
   const navigate = useNavigate();
 
-  const manejarBusqueda = (evento) => {
+  const handleSearch = (evento) => {
     const valor = evento.target.value;
-    setBusqueda(valor);
+    setSearch(valor);
 
     if (valor.trim()) {
       navigate("/busqueda");
@@ -40,8 +40,8 @@ const SearchBar = () => {
           id="search"
           className="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
           placeholder="Buscar Productos..."
-          value={busqueda}
-          onChange={manejarBusqueda}
+          value={search}
+          onChange={handleSearch}
         />
       </div>
     </form>
